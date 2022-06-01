@@ -1,0 +1,52 @@
+module fsmtest();
+reg Tdin, Tclk, Trst;
+wire [2:0] Tstate;
+wire outp;
+
+initial begin
+    Trst = 1'b0;
+    Tdin = 1'b0;
+    Tclk = 1'b0;
+                    // let us enter the seq : 1011011
+#10 Trst = 1'b1;
+    Tdin = 1'b1;
+    Tclk = 1'b1;
+
+#10 Trst = 1'b1;
+    Tdin = 1'b0;
+    Tclk = 1'b0;
+    Tclk = 1'b1;
+
+#10 Trst = 1'b1;
+    Tdin = 1'b1;
+    Tclk = 1'b0;
+    Tclk = 1'b1;
+
+#10 Trst = 1'b1;
+    Tdin = 1'b1;
+    Tclk = 1'b0;
+    Tclk = 1'b1;
+
+#10 Trst = 1'b1;
+    Tdin = 1'b0;
+    Tclk = 1'b0;
+    Tclk = 1'b1;
+
+#10 Trst = 1'b1;
+    Tdin = 1'b1;
+    Tclk = 1'b0;
+    Tclk = 1'b1;
+
+#10 Trst = 1'b1;
+    Tdin = 1'b1;
+    Tclk = 1'b0;
+    Tclk = 1'b1;
+end
+fsmmo testo (
+    .reset(Trst),
+    .clk(Tclk),
+    .din(Tdin),
+    .seqcheck(outp),
+    .state(Tstate)
+);
+endmodule
